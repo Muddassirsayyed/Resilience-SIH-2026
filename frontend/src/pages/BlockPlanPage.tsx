@@ -11,7 +11,7 @@ interface BlockPlanPageProps {
 }
 
 export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
-  plans,
+  plans = [],
   loading,
   error,
   onRefresh,
@@ -19,22 +19,28 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
 
-  // Filter plans based on search and status
-  const filteredPlans = plans.filter((plan) => {
+  // Filter plans safely based on search and status
+  const filteredPlans = (plans || []).filter((plan) => {
+    const locationStr = plan.location || '';
+    const tasksArr = plan.assigned_tasks || [];
+    const sectionCodeStr = plan.section_code || '';
+    const statusStr = plan.status || '';
+
     const matchesSearch =
-      plan.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      plan.assigned_tasks.some((task) =>
-        task.toLowerCase().includes(searchTerm.toLowerCase())
+      locationStr.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tasksArr.some((task) =>
+        (task || '').toLowerCase().includes(searchTerm.toLowerCase())
       ) ||
-      (plan.section_code && plan.section_code.toLowerCase().includes(searchTerm.toLowerCase()));
+      sectionCodeStr.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesStatus =
-      statusFilter === 'ALL' || plan.status === statusFilter;
+      statusFilter === 'ALL' || statusStr === statusFilter;
 
     return matchesSearch && matchesStatus;
   });
 
-  const formatDateTime = (isoString: string) => {
+  const formatDateTime = (isoString?: string) => {
+    if (!isoString) return { date: 'N/A', time: 'N/A' };
     try {
       const d = new Date(isoString);
       return {
@@ -129,8 +135,9 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
           {filteredPlans.map((plan) => {
             const startFormatted = formatDateTime(plan.start_time);
             const endFormatted = formatDateTime(plan.end_time);
-
-            const isOptimized = plan.status.includes('OPTIMIZED');
+            const statusStr = plan.status || 'SCHEDULED';
+            const isOptimized = statusStr.includes('OPTIMIZED');
+            const tasksList = plan.assigned_tasks || [];
 
             return (
               <div
@@ -156,12 +163,12 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
                       className={`text-[11px] font-semibold px-2.5 py-1 rounded-full font-mono ${
                         isOptimized
                           ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                          : plan.status === 'CRITICAL' || plan.status === 'PENDING_OPTIMIZATION'
+                          : statusStr === 'CRITICAL' || statusStr === 'PENDING_OPTIMIZATION'
                           ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                           : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                       }`}
                     >
-                      {plan.status}
+                      {statusStr}
                     </span>
                   </div>
 
@@ -169,7 +176,7 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
                   <div>
                     <div className="flex items-start space-x-2 text-slate-200 font-semibold text-sm">
                       <MapPin className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{plan.location}</span>
+                      <span>{plan.location || 'Location Not Specified'}</span>
                     </div>
                   </div>
 
@@ -200,10 +207,10 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
                   <div className="space-y-1.5">
                     <div className="flex items-center space-x-1.5 text-xs font-semibold text-slate-300">
                       <CheckSquare className="h-3.5 w-3.5 text-cyan-400" />
-                      <span>Assigned Tasks ({plan.assigned_tasks.length}):</span>
+                      <span>Assigned Tasks ({tasksList.length}):</span>
                     </div>
                     <ul className="space-y-1 pl-2">
-                      {plan.assigned_tasks.map((task, idx) => (
+                      {tasksList.map((task, idx) => (
                         <li key={idx} className="text-xs text-slate-300 flex items-center space-x-2">
                           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
                           <span>{task}</span>
