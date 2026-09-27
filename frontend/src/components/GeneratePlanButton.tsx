@@ -45,29 +45,29 @@ export const GeneratePlanButton: React.FC<GeneratePlanButtonProps> = ({ onPlanGe
   };
 
   return (
-    <div className="flex flex-col items-end space-y-2">
+    <div className="flex flex-col items-end space-y-1">
       <div className="flex items-center space-x-3">
         {lastResult && (
           <button
             onClick={handleReset}
             disabled={loading}
-            className="flex items-center space-x-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-xs font-medium hover:bg-slate-800 transition disabled:opacity-50"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 shadow-xs transition disabled:opacity-50"
             title="Reset to initial conflict state"
           >
-            <RefreshCw className="h-3.5 w-3.5 text-slate-400" />
-            <span>Reset Demo State</span>
+            <RefreshCw className="h-3.5 w-3.5 text-slate-500" />
+            <span>Reset</span>
           </button>
         )}
 
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="flex items-center space-x-2.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-[#dc2626] hover:bg-[#b91c1c] active:bg-[#991b1b] text-white font-bold text-sm shadow-md transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin text-white" />
-              <span>Optimizing & Generating Plan...</span>
+              <span>Optimizing...</span>
             </>
           ) : (
             <>
@@ -77,74 +77,80 @@ export const GeneratePlanButton: React.FC<GeneratePlanButtonProps> = ({ onPlanGe
           )}
         </button>
       </div>
+      <p className="text-[11px] text-slate-500 font-medium">
+        Run AI optimization to resolve conflicts
+      </p>
 
       {/* Error alert state */}
       {error && (
-        <div className="w-full max-w-md p-3 rounded-xl bg-red-950/80 border border-red-500/40 text-red-300 text-xs flex items-center space-x-2 animate-fadeIn">
-          <AlertCircle className="h-4 w-4 text-red-400 shrink-0" />
+        <div className="w-full max-w-md p-3 rounded bg-red-50 border border-red-300 text-red-800 text-xs flex items-center space-x-2">
+          <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Before vs After Conflict Count Summary Banner / Modal */}
       {showSummaryModal && lastResult && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-          <div className="w-full max-w-md glass-panel p-6 rounded-2xl border border-cyan-500/30 shadow-2xl space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fadeIn">
+          <div className="w-full max-w-md bg-white rounded-lg border border-slate-300 shadow-2xl space-y-5 overflow-hidden">
+            {/* Modal Header */}
+            <div className="bg-[#002447] text-white px-5 py-3.5 flex items-center justify-between border-b border-slate-700">
               <div className="flex items-center space-x-2.5">
-                <CheckCircle2 className="h-6 w-6 text-emerald-400" />
-                <h3 className="text-lg font-bold text-white">Plan Generation Complete</h3>
+                <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                <h3 className="text-base font-bold text-white tracking-wide">Plan Generation Complete</h3>
               </div>
               <button
                 onClick={() => setShowSummaryModal(false)}
-                className="text-slate-400 hover:text-white text-sm"
+                className="text-slate-300 hover:text-white text-base font-bold px-2"
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
-              {lastResult.message}
-            </p>
+            <div className="p-5 space-y-4">
+              <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                {lastResult.message}
+              </p>
 
-            {/* Before vs After Conflict Count Metric */}
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
-              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                Conflict Count (Before vs After)
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="text-center flex-1">
-                  <div className="text-xs text-slate-500 mb-1">Before</div>
-                  <div className="text-2xl font-bold font-mono text-red-400 bg-red-500/10 py-1.5 rounded-lg border border-red-500/20">
-                    {lastResult.before_conflict_count} Conflicts
+              {/* Before vs After Conflict Count Metric */}
+              <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-3">
+                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  Conflict Resolution Metric (Before vs After)
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="text-center flex-1">
+                    <div className="text-[11px] font-semibold text-slate-500 mb-1">Before Optimization</div>
+                    <div className="text-xl font-bold font-mono text-red-700 bg-red-50 py-1.5 rounded border border-red-200">
+                      {lastResult.before_conflict_count} Conflicts
+                    </div>
+                  </div>
+
+                  <div className="px-3 flex items-center justify-center text-slate-400">
+                    <ArrowRight className="h-5 w-5 text-blue-600" />
+                  </div>
+
+                  <div className="text-center flex-1">
+                    <div className="text-[11px] font-semibold text-slate-500 mb-1">After Optimization</div>
+                    <div className="text-xl font-bold font-mono text-emerald-700 bg-emerald-50 py-1.5 rounded border border-emerald-200">
+                      {lastResult.after_conflict_count} Conflicts
+                    </div>
                   </div>
                 </div>
 
-                <div className="px-3 flex items-center justify-center text-slate-500">
-                  <ArrowRight className="h-5 w-5 text-cyan-400" />
-                </div>
-
-                <div className="text-center flex-1">
-                  <div className="text-xs text-slate-500 mb-1">After</div>
-                  <div className="text-2xl font-bold font-mono text-emerald-400 bg-emerald-500/10 py-1.5 rounded-lg border border-emerald-500/20">
-                    {lastResult.after_conflict_count} Conflicts
-                  </div>
+                <div className="pt-2 border-t border-slate-200 flex justify-between text-xs text-slate-600 font-mono">
+                  <span>Resolved: <strong className="text-emerald-700">{lastResult.conflicts_resolved}</strong></span>
+                  <span>AI Efficiency: <strong className="text-blue-700">{lastResult.optimization_score}</strong></span>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-slate-800 flex justify-between text-xs text-slate-400 font-mono">
-                <span>Conflicts Resolved: <strong className="text-emerald-400">{lastResult.conflicts_resolved}</strong></span>
-                <span>AI Efficiency: <strong className="text-cyan-400">{lastResult.optimization_score}</strong></span>
+              <div className="flex justify-end pt-2">
+                <button
+                  onClick={() => setShowSummaryModal(false)}
+                  className="px-4 py-2 rounded bg-[#002447] hover:bg-[#073666] text-white font-semibold text-xs shadow-sm transition"
+                >
+                  View Updated Schedules
+                </button>
               </div>
-            </div>
-
-            <div className="flex justify-end pt-2">
-              <button
-                onClick={() => setShowSummaryModal(false)}
-                className="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition"
-              >
-                View Updated Schedules
-              </button>
             </div>
           </div>
         </div>

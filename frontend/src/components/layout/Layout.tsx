@@ -9,11 +9,11 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, conflictCount }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#090d16] text-slate-100">
+    <div className="min-h-screen flex flex-col bg-[#eef2f6] text-slate-900 font-sans">
       <Navbar conflictCount={conflictCount} />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar conflictCount={conflictCount} />
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-gradient-to-b from-slate-950 via-[#0a0f1d] to-[#080b14]">
+        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#eef2f6] bg-workspace-pattern">
           {children}
         </main>
       </div>
