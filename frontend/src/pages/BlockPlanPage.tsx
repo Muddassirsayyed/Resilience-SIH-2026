@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, CheckSquare, Search, Filter, ShieldCheck, Tag } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, Clock, MapPin, CheckSquare, Search, Filter, ShieldCheck, Tag, Sparkles } from 'lucide-react';
 import { BlockPlanItem } from '../types';
 import { GeneratePlanButton } from '../components/GeneratePlanButton';
+
 
 interface BlockPlanPageProps {
   plans: BlockPlanItem[];
@@ -73,9 +75,20 @@ export const BlockPlanPage: React.FC<BlockPlanPageProps> = ({
           </p>
         </div>
 
-        {/* Generate Plan Button integration */}
-        <GeneratePlanButton onPlanGenerated={onRefresh} />
+        {/* Actions: AI Priority Queue & Generate Plan Button */}
+        <div className="flex items-center space-x-2.5">
+          <Link
+            to="/prioritized-tasks"
+            className="flex items-center space-x-1.5 px-3.5 py-2.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 font-bold text-xs shadow-xs transition"
+            title="Inspect AI Prioritization Engine ranked tasks"
+          >
+            <Sparkles className="h-4 w-4 text-blue-700" />
+            <span>AI Priority Queue</span>
+          </Link>
+          <GeneratePlanButton onPlanGenerated={onRefresh} />
+        </div>
       </div>
+
 
       {/* Summary KPI Cards Row (Exact matching reference screenshot styling) */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">

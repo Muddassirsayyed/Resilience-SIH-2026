@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { BlockPlanPage } from './pages/BlockPlanPage';
 import { ConflictsPage } from './pages/ConflictsPage';
+import { PrioritizedTasksPage } from './pages/PrioritizedTasksPage';
+import { ScenarioPage } from './pages/ScenarioPage';
+import { NetworkPage } from './pages/NetworkPage';
 import { fetchBlockPlans, fetchConflicts } from './services/api';
 import { BlockPlanItem, ConflictAlertItem } from './types';
 
@@ -50,6 +53,18 @@ export const App: React.FC = () => {
             }
           />
           <Route
+            path="/prioritized-tasks"
+            element={<PrioritizedTasksPage />}
+          />
+          <Route
+            path="/scenarios"
+            element={<ScenarioPage />}
+          />
+          <Route
+            path="/network"
+            element={<NetworkPage />}
+          />
+          <Route
             path="/conflicts"
             element={
               <ConflictsPage
@@ -66,5 +81,6 @@ export const App: React.FC = () => {
     </BrowserRouter>
   );
 };
+
 
 export default App;

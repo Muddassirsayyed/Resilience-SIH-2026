@@ -1,0 +1,4 @@
+id,train,location,section_code,overlap_start,overlap_end,conflict_type,severity,impact,status
+CONF-801,12626 Kerala Express (NDLS -> TVC),Mathura Junction North Yard (KM 142-145),MTJ-NY-L1,2026-09-28T03:45:00Z,2026-09-28T04:30:00Z,Track Block vs Express Passage Overlap,CRITICAL,High risk of train stoppage or track maintenance collision window overlap.,UNRESOLVED
+CONF-802,12004 Lucknow Shatabdi Express,New Delhi - Ghaziabad Section (KM 12-18),NDLS-GZB-L3,2026-09-28T04:15:00Z,2026-09-28T05:00:00Z,Power Block Line De-energization,CRITICAL,Electric locomotive power disruption on Line 3 during overhead wire maintenance.,UNRESOLVED
+CONF-803,22436 Vande Bharat Express,Agra Cantt - Tundla Main Line (KM 204-210),AGC-TDL-UP,2026-09-28T08:30:00Z,2026-09-28T09:00:00Z,Speed Restriction & Track Occupation,HIGH,Speed restricted to 20 km/h during bridge structural sensor testing.,UNRESOLVED

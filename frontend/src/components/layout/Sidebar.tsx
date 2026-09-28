@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar, AlertTriangle } from 'lucide-react';
+import { Calendar, AlertTriangle, ListOrdered, Sliders, Network } from 'lucide-react';
 
 interface SidebarProps {
   conflictCount: number;
@@ -15,6 +15,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ conflictCount }) => {
       badge: null,
     },
     {
+      name: 'Priority Engine',
+      path: '/prioritized-tasks',
+      icon: ListOrdered,
+      badge: null,
+    },
+    {
+      name: 'What-If Simulation',
+      path: '/scenarios',
+      icon: Sliders,
+      badge: null,
+    },
+    {
+      name: 'Network Sync',
+      path: '/network',
+      icon: Network,
+      badge: null,
+    },
+    {
       name: 'Conflict Alerts',
       path: '/conflicts',
       icon: AlertTriangle,
@@ -22,6 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ conflictCount }) => {
       badgeColor: 'bg-white/20 text-white font-bold',
     },
   ];
+
 
   return (
     <aside className="w-64 border-r border-slate-800 bg-[#0a192f] text-slate-100 flex flex-col justify-between shrink-0 relative overflow-hidden shadow-2xl">
