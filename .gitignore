@@ -1,27 +1,17 @@
-# Dependencies
-node_modules/
-
-# Production Build
-dist/
-dist-ssr/
-build/
-
-# Environment & Local Files
-*.local
-.env
-.env.*
-
-# Python & Backend
+﻿node_modules/
 __pycache__/
-*.py[cod]
-*$py.class
-.venv/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.db
+*.sqlite
+*.sqlite3
+.env
+.venv
 venv/
-env/
+*.egg-info/
+dist/
+build/
 .pytest_cache/
-
-# System & IDE files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+.mypy_cache/

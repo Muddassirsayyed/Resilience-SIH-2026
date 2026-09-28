@@ -1,0 +1,9 @@
+id,title,location,section_code,department,duration_hours,criticality,safety,overdue,train_impact,asset_impact,status,description
+TASK-MTJ-01,Turnout Switch Diamond Crossing Renewal,Mathura Junction North Yard (KM 142-145),MTJ-NY-L1,Engineering / Track,4.0,9.5,9.8,8.5,9.0,8.0,PENDING_BLOCK,High risk crossing point renewal on high-speed Delhi-Mumbai corridor
+TASK-GZB-02,Overhead Catenary Line Replacement,New Delhi - Ghaziabad Section (KM 12-18),NDLS-GZB-L3,Electrical / TRD,3.5,9.0,8.5,7.0,8.5,7.5,PENDING_BLOCK,Contact wire replacement to eliminate spark gaps on 25kV traction line
+TASK-AGC-03,Bridge Span Structural Inspection,Agra Cantt - Tundla Main Line (KM 204-210),AGC-TDL-UP,Civil / Bridges,3.5,8.0,9.0,6.5,7.0,7.0,PENDING_BLOCK,Ultrasonic testing of bridge piers and girders under live loads
+TASK-GZB-04,Signal Junction Relay Box Testing,New Delhi - Ghaziabad Section (KM 12-18),NDLS-GZB-L3,Signaling & Telecom,2.5,8.5,8.0,7.5,7.0,6.5,PENDING_BLOCK,Solid-state interlocking relay inspection and fail-safe signal testing
+TASK-MTJ-05,Ultrasonic Rail Flaw Detection (USFD),Mathura Junction North Yard (KM 142-145),MTJ-NY-L1,Engineering / Track,3.0,8.5,9.2,5.5,6.5,7.0,PENDING_BLOCK,B-scan ultrasonic flaw detection to catch internal rail fissures
+TASK-CNB-06,Substation Transformer Inspection,Kanpur Central West Yard (KM 430-434),CNB-WY-L4,Electrical / TRD,3.0,7.5,7.0,6.0,6.0,8.5,SCHEDULED,Traction power transformer oil testing and bushing thermal scan
+TASK-GZB-07,Track Ballast Tamping & Alignment,New Delhi - Ghaziabad Section (KM 12-18),NDLS-GZB-L3,Engineering / Track,4.0,7.0,6.5,5.0,7.5,6.0,SCHEDULED,Heavy tamping machine alignment for high-density commuter track
+TASK-CNB-08,Third Rail / OHE Maintenance,Kanpur Central West Yard (KM 430-434),CNB-WY-L4,Electrical / TRD,3.0,6.5,6.0,4.5,5.5,6.0,SCHEDULED,Pantograph contact insulator washing and tension balance check

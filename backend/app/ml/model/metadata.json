@@ -1,0 +1,21 @@
+{
+    "model_name": "maintenance_priority_classifier",
+    "version": "v1.0",
+    "dataset_size": 5000,
+    "features": [
+        "department",
+        "criticality",
+        "urgency",
+        "asset_condition",
+        "overdue",
+        "overdue_days",
+        "failure_history",
+        "estimated_duration_hours",
+        "safety_critical",
+        "passenger_impact"
+    ],
+    "accuracy": 0.893,
+    "macro_f1": 0.8085231993922037,
+    "trained_on": "synthetic_simulator_data",
+    "notice": "Current ML results are based on simulator-generated synthetic data. Production deployment requires historical railway data."
+}
