@@ -1,0 +1,78 @@
+{
+  "corridors": [
+    {
+      "corridor_id": "COR-NCR-01",
+      "name": "Delhi - Mathura - Agra High-Speed Trunk Corridor",
+      "description": "High-density passenger and freight mainline connecting New Delhi, Ghaziabad, Mathura, and Agra",
+      "sections": [
+        {
+          "section_id": "NDLS-GZB-L3",
+          "section_name": "New Delhi - Ghaziabad Line 3",
+          "corridor_id": "COR-NCR-01",
+          "location": "New Delhi - Ghaziabad Section (KM 12-18)",
+          "sequence": 1,
+          "adjacent_sections": ["MTJ-NY-L1"],
+          "electrified": true,
+          "tracks": 2
+        },
+        {
+          "section_id": "MTJ-NY-L1",
+          "section_name": "Mathura Junction North Yard Line 1",
+          "corridor_id": "COR-NCR-01",
+          "location": "Mathura Junction North Yard (KM 142-145)",
+          "sequence": 2,
+          "adjacent_sections": ["NDLS-GZB-L3", "AGC-TDL-UP"],
+          "electrified": true,
+          "tracks": 4
+        },
+        {
+          "section_id": "AGC-TDL-UP",
+          "section_name": "Agra Cantt - Tundla Up Main Line",
+          "corridor_id": "COR-NCR-01",
+          "location": "Agra Cantt - Tundla Main Line (KM 204-210)",
+          "sequence": 3,
+          "adjacent_sections": ["MTJ-NY-L1"],
+          "electrified": true,
+          "tracks": 2
+        }
+      ]
+    },
+    {
+      "corridor_id": "COR-NCR-02",
+      "name": "Agra - Kanpur - Lucknow Freight & Express Corridor",
+      "description": "Critical east-west corridor serving heavy freight movements and inter-city express trains",
+      "sections": [
+        {
+          "section_id": "AGC-TDL-UP",
+          "section_name": "Agra Cantt - Tundla Junction",
+          "corridor_id": "COR-NCR-02",
+          "location": "Agra Cantt - Tundla Main Line (KM 204-210)",
+          "sequence": 1,
+          "adjacent_sections": ["CNB-WY-L4"],
+          "electrified": true,
+          "tracks": 2
+        },
+        {
+          "section_id": "CNB-WY-L4",
+          "section_name": "Kanpur Central West Yard Line 4",
+          "corridor_id": "COR-NCR-02",
+          "location": "Kanpur Central West Yard (KM 430-434)",
+          "sequence": 2,
+          "adjacent_sections": ["AGC-TDL-UP", "CNB-LKO-D1"],
+          "electrified": true,
+          "tracks": 4
+        },
+        {
+          "section_id": "CNB-LKO-D1",
+          "section_name": "Kanpur - Lucknow Down Main Line",
+          "corridor_id": "COR-NCR-02",
+          "location": "Kanpur - Lucknow Section (KM 490-505)",
+          "sequence": 3,
+          "adjacent_sections": ["CNB-WY-L4"],
+          "electrified": true,
+          "tracks": 2
+        }
+      ]
+    }
+  ]
+}
