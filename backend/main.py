@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime, timezone
 import logging
 import time
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ortools.sat.python import cp_model
@@ -987,6 +987,35 @@ def get_dashboard_stats():
         department_workload=dept_workload,
         is_demo_data=True
     )
+
+
+@app.get("/api/trains", response_model=dict)
+def get_trains():
+    """Retrieve all scheduled train movements"""
+    return {
+        "success": True,
+        "total": len(TRAIN_MOVEMENTS),
+        "data": TRAIN_MOVEMENTS,
+    }
+
+import shutil
+import os
+
+@app.post("/api/upload-csv", response_model=dict)
+async def upload_csv(file: UploadFile = File(...)):
+    """Upload tasks or trains CSV data"""
+    if not file.filename.endswith('.csv'):
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail="Only CSV files are allowed.")
+    
+    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
+    os.makedirs(data_dir, exist_ok=True)
+    file_path = os.path.join(data_dir, file.filename)
+    
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+        
+    return {"success": True, "message": f"Successfully uploaded {file.filename}."}
 
 @app.get("/api/tasks", response_model=dict)
 def get_maintenance_tasks():
